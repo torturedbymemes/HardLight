@@ -155,8 +155,12 @@
     keysUnlocked: false
   - type: OfferItem # HL
   - type: ActiveRadio
+    intrinsicChannels:
+    - Binary
   - type: IntrinsicRadioReceiver
   - type: IntrinsicRadioTransmitter
+    intrinsicChannels:
+    - Binary
   - type: DeadStartupButton
     sound:
       path: /Audio/_EE/Effects/Silicon/startup.ogg

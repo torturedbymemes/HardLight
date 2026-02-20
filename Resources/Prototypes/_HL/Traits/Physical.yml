@@ -138,9 +138,6 @@
   description: natural-regen-text
   category: Physical
   cost: 6
-  speciesBlacklist:
-  - IPC
-  - Synth
   blacklist:
     components:
     - BorgChassis
@@ -165,9 +162,6 @@
   description: unnatural-regen-text
   category: Physical
   cost: 8
-  speciesBlacklist:
-  - IPC
-  - Synth
   blacklist:
     components:
     - BorgChassis
