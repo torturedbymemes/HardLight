@@ -133,7 +133,7 @@
     steps: 5
     zeroVisible: true
   - type: Gun
-    fireRate: 7
+    fireRate: 8
     selectedMode: FullAuto
     availableModes:
     - FullAuto
@@ -144,7 +144,7 @@
         volume: -10
   - type: HitscanBatteryAmmoProvider
     proto: RedLightLaser
-    fireCost: 50
+    fireCost: 40
   - type: Appearance
   - type: StaticPrice
     price: 500
