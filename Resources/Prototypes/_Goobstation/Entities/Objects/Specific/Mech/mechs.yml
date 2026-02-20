@@ -120,7 +120,7 @@
     baseState: clarke
     openState: clarke-open
     brokenState: clarke-broken
-    mechToPilotDamageMultiplier: 0.5
+    mechToPilotDamageMultiplier: 0.3
     airtight: true
     pilotWhitelist:
       components:
@@ -132,8 +132,8 @@
       types:
         Blunt: 26
   - type: MovementSpeedModifier
-    baseWalkSpeed: 3
-    baseSprintSpeed: 5
+    baseWalkSpeed: 2.5
+    baseSprintSpeed: 4.5
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
   - type: StaticPrice
@@ -143,6 +143,11 @@
     - DoorBumpOpener
     - FootstepSound
     - Clarke
+  - type: Prying # Mono
+    pryPowered: true
+    speedModifier: 2
+    useSound:
+      path: /Audio/Items/jaws_pry.ogg
 
 - type: entity
   id: MechClarkeBattery
@@ -170,7 +175,7 @@
 # Gygax
 - type: entity
   id: MechGygax
-  parent: [ BaseMech, CombatMech, BaseC3ExpeditionContraband ]
+  parent: [ BaseMech, IndustrialMech, CombatMech, BaseC3ExpeditionContraband ]
   name: Gygax
   description: While lightly armored, the Gygax has incredible mobility thanks to its ability that lets it smash through walls at high speeds.
   components:
@@ -191,7 +196,7 @@
     baseState: gygax
     openState: gygax-open
     brokenState: gygax-broken
-    mechToPilotDamageMultiplier: 0.3
+    mechToPilotDamageMultiplier: 0.1
     airtight: true
     pilotWhitelist:
       components:
@@ -206,9 +211,9 @@
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
   - type: MovementSpeedModifier
-    baseWalkSpeed: 1
-    baseSprintSpeed: 2
-    baseWeightlessModifier: 3
+    baseWalkSpeed: 3
+    baseSprintSpeed: 4.5
+    baseWeightlessModifier: 5
   - type: StaticPrice
     price: 3000
   - type: Tag
@@ -216,6 +221,12 @@
     - DoorBumpOpener
     - FootstepSound
     - Gygax
+  - type: Prying
+    pryPowered: true
+    force: true
+    speedModifier: 3
+    useSound:
+      path: /Audio/Items/jaws_pry.ogg
 
 - type: entity
   id: MechGygaxBattery
@@ -265,9 +276,9 @@
         Blunt: 40
         Structural: 220
   - type: MovementSpeedModifier
-    baseWalkSpeed: 1
+    baseWalkSpeed: 1.5
     baseSprintSpeed: 2
-    baseWeightlessModifier: 2
+    baseWeightlessModifier: 3
   - type: Damageable
     damageModifierSet: MediumArmorNT
   - type: CanMoveInAir
@@ -282,6 +293,11 @@
     - DoorBumpOpener
     - FootstepSound
     - Durand
+  - type: Prying # Mono
+    pryPowered: true
+    speedModifier: 3
+    useSound:
+      path: /Audio/Items/jaws_pry.ogg
 
 - type: entity
   id: MechDurandBattery
@@ -346,6 +362,11 @@
     doAfterDelay: 15
   - type: StaticPrice
     price: 15000 # Some respect if you steal one of these.
+  - type: Prying # Mono
+    pryPowered: true
+    speedModifier: 3
+    useSound:
+      path: /Audio/Items/jaws_pry.ogg
 
 - type: entity
   id: MechMarauderBattery
@@ -408,9 +429,9 @@
         Blunt: 60
         Structural: 400
   - type: MovementSpeedModifier
-    baseWalkSpeed: 1
-    baseSprintSpeed: 2
-    baseWeightlessModifier: 4
+    baseWalkSpeed: 2.2
+    baseSprintSpeed: 3.7
+    baseWeightlessModifier: 3
   - type: Damageable
     damageModifierSet: HeavyArmorNT
   - type: CanMoveInAir
@@ -420,6 +441,11 @@
     doAfterDelay: 20
   - type: StaticPrice
     price: 30000 # My respects if you manage to steal one of these.
+  - type: Prying # Mono
+    pryPowered: true
+    speedModifier: 3
+    useSound:
+      path: /Audio/Items/jaws_pry.ogg
 
 - type: entity
   id: MechSeraphBattery
@@ -485,9 +511,9 @@
         Blunt: 30
         Structural: 200
   - type: MovementSpeedModifier
-    baseWalkSpeed: 1
-    baseSprintSpeed: 2
-    baseWeightlessModifier: 3
+    baseWalkSpeed: 3.5
+    baseSprintSpeed: 5.5
+    baseWeightlessModifier: 7
   - type: Damageable
     damageModifierSet: MediumArmorSyndi
   - type: CanMoveInAir
@@ -497,6 +523,11 @@
     doAfterDelay: 20
   - type: StaticPrice
     price: 15000 # Some respect if you steal one of these.
+  - type: Prying # Mono
+    pryPowered: true
+    speedModifier: 3
+    useSound:
+      path: /Audio/Items/jaws_pry.ogg
 
 - type: entity
   id: MechGygaxSyndieBattery
@@ -571,6 +602,11 @@
     doAfterDelay: 25
   - type: StaticPrice
     price: 30000 # Some respect if you steal one of these.
+  - type: Prying # Mono
+    pryPowered: true
+    speedModifier: 3
+    useSound:
+      path: /Audio/Items/jaws_pry.ogg
 
 - type: entity
   id: MechMaulerSyndieBattery
