@@ -82,7 +82,7 @@
   components:
     - type: MapGrid
     - type: BlobFloorPlanBuilder
-      floorPlacements: 24
+      floorPlacements: 36
 
 - type: entity
   id: AsteroidDebrisLarger
@@ -92,8 +92,8 @@
   components:
     - type: MapGrid
     - type: BlobFloorPlanBuilder
-      radius: 12
-      floorPlacements: 36
+      radius: 14
+      floorPlacements: 50
 
 - type: entity
   id: AsteroidSalvageSmall
