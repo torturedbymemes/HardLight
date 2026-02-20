@@ -69,7 +69,7 @@
             # hardlight
             #Contractor: [ -1, -1 ]
             #Pilot: [ 5, 5 ]
-            Mercenary: [ 0, 40 ]
+            Mercenary: [ 40, 40 ]
             StationTrafficController: [ 1, 1 ]
             MedicalQuadBorg: [ 3, 3 ]
             ServiceQuadBorg: [ 3, 3 ]

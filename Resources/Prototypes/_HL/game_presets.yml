@@ -260,7 +260,6 @@
     - NFAdventure
     - BasicRoundstartVariation
 #    - NFRoundstartVariation
-    - DynamicJobAllocation
 
 - type: gamePreset
   id: NFPirate
@@ -275,4 +274,3 @@
     #- NFAdventure
     #- BasicRoundstartVariation
     #- NFRoundstartVariation
-    - DynamicJobAllocation
