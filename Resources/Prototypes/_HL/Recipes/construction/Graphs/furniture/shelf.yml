@@ -8,9 +8,9 @@
       steps:
       - material: Plasteel
         amount: 30
-        doAfter: 5
+        doAfter: 2
       - material: Bluespace
-        amount: 25
+        amount: 10
         doAfter: 1
   - node: done
     entity: LockerWallBluespace
@@ -18,7 +18,7 @@
     - to: start
       steps:
       - tool: Screwing
-        doAfter: 5
+        doAfter: 2
       conditions:
       - !type:StorageWelded
         welded: false
