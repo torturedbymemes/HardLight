@@ -33,7 +33,7 @@
 - type: salvageDifficulty
   id: NFExtreme
   lootTable: NFSalvageLootExtreme
-  lootBudget: 50
+  lootBudget: 60
   mobBudget: 40
   modifierBudget: 4
   color: "#D381C996"
