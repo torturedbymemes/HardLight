@@ -29,10 +29,10 @@
       # prob: 0.1
       # orGroup: debris
     - id: NFAsteroidDebrisHuge
-      prob: 0.1
+      prob: 0.2
       orGroup: debris
     - id: NFAsteroidScrapDebrisHuge
-      prob: 0.1
+      prob: 0.4
       orGroup: debris
     - id: NFAsteroidDebrisExtraHuge
       prob: 0.1
