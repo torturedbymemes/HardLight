@@ -189,7 +189,7 @@
       prob: 0.005
       orGroup: wreck
     - id: XenoborgDroneLbyte
-      prob: 0.05
+      prob: 0.08
       orGroup: wreck
     - id: XenoborgDroneLgbyte
       prob: 0.02
