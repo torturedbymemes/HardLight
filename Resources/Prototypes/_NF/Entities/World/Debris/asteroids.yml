@@ -366,8 +366,8 @@
   abstract: true
   components:
     - type: BlobFloorPlanBuilder
-      floorPlacements: 16
-      radius: 6
+      floorPlacements: 22
+      radius: 8
 
 - type: entity
   id: NFBaseAsteroidMedium
@@ -376,8 +376,8 @@
   abstract: true
   components:
     - type: BlobFloorPlanBuilder
-      floorPlacements: 24
-      radius: 8
+      floorPlacements: 30
+      radius: 9
 
 - type: entity
   id: NFBaseAsteroidLarge
