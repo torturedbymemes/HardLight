@@ -24,7 +24,7 @@
     sprite: Objects/Weapons/Guns/Basic/syndie-flamer.rsi
     size: Ginormous
   - type: Gun
-    projectileSpeed: 16
+    projectileSpeed: 20
     cameraRecoilScalar: 0
     fireRate: 10
     selectedMode: FullAuto
