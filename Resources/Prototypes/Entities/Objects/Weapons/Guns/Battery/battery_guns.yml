@@ -643,7 +643,7 @@
     fireCost: 100
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 35
+    autoRechargeRate: 30
   - type: MagazineVisuals
     magState: mag
     steps: 5
