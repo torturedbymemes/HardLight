@@ -173,7 +173,7 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser.ogg
   - type: ProjectileBatteryAmmoProvider
-    proto: LexieLaser
+    proto: NFBulletLaserLow
     fireCost: 60
   - type: EnergyGun
     fireModes:
