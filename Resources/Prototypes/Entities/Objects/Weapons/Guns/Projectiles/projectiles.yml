@@ -1363,7 +1363,9 @@
     impactEffect: BulletImpactEffectFlamer
     damage:
       types:
+        heat: 4
         Shock: 0
+        
   - type: EmpOnTrigger
     range: 2
     energyConsumption: 2700000
