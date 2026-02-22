@@ -1,0 +1,95 @@
+- type: startingGear
+  id: CCSuperintendentCloverBundle
+  equipment:
+    pocket1: BoxFolderColComClipboardNirou
+    pocket2: PocketBluespaceTankGilm
+    head: ClothingHeadHatCentcomcap
+    neck: ClothingNeckScarfStripedCentcom
+    mask: ClothingMaskGasCentcom
+    eyes: ClothingEyesGlasses
+    ears: ClothingHeadsetCentCom
+    gloves: ClothingHandsGlovesSr
+    shoes: ClothingShoesColorWhite
+    suitstorage: WeaponDisablerSMGRecharging
+    outerClothing: ClothingOuterArmorChameleon
+    jumpsuit: ClothingUniformJumpskirtCentcomFormalDress
+    belt: ClothingBeltSheathFilled
+    back: ClothingBackpackSatchelHoldingNirouFilled
+    id: CloverColcommPDA
+
+- type: startingGear
+  id: CCSuperintendentCloverWarBundle
+  equipment:
+    pocket1: AmmoBox145x114mmBig
+    pocket2: PocketBluespaceTankGilm
+    head: ClothingHeadHelmetHardsuitERTCentcomm
+    neck: ClothingNeckScarfStripedCentcom
+    mask: ClothingMaskGasCentcom
+    eyes: ClothingEyesGlasses
+    ears: ClothingHeadsetCentCom
+    gloves: ClothingHandsGlovesSr
+    shoes: ClothingShoesBootsLaceup
+    suitstorage: WeaponSniperHristov
+    outerClothing: ClothingOuterVestWebEliteCentcomm
+    jumpsuit: ClothingUniformJumpskirtPencilCentcomOfficial
+    belt: ClothingBeltSheathFilled
+    back: ClothingBackpackSatchelHoldingNirouFilled
+    id: CloverColcommPDA
+
+# ID Card
+- type: entity
+  id: CloverColcommIDCard
+  parent: IDCardStandard
+  name: Clover Petal Enright's ID card (Colonial Superintendent)
+  description: '"So... so sleepy..."'
+  suffix: Clover, Admin
+  components:
+  - type: Tag
+    tags:
+    - Admin
+  - type: IdCard
+    fullName: Clover Petal Enright
+    jobTitle: job-title-colonial-superintendent
+    jobIcon: JobIconColComm
+  - type: Sprite
+    layers:
+    - state: centcom
+    - state: idcentcom
+  - type: Item
+    heldPrefix: blue
+  - type: Access
+    groups:
+    - AllAccess
+    tags:
+    - CentralCommand
+
+# pda
+- type: entity
+  id: CloverColcommPDA
+  parent: CentcomPDA
+  # name:
+  # description:
+  suffix: Clover, Admin
+  components:
+  - type: Tag
+    tags:
+    - Admin
+  - type: Pda
+    id: CloverColcommIDCard # ID Card
+    penSlot:
+      startingItem: PenCentcom
+      whitelist:
+        tags:
+        - Write
+  - type: CartridgeLoader
+    preinstalled:
+    - CrewManifestCartridge
+    - NotekeeperCartridge
+    - NanoTaskCartridge
+    - NewsReaderCartridge
+    - BountyContractsCartridge
+    - AstroNavCartridge
+    - MedTekCartridge
+    - WantedListCartridge
+    - GlimmerMonitorCartridge
+    - PsiWatchCartridge

@@ -23,9 +23,6 @@ public sealed partial class DynamicJobAllocationRuleComponent : Component
     [DataField("mercenaryJob")]
     public ProtoId<JobPrototype> MercenaryJob = "Mercenary";
 
-
-    [DataField("mercenaryPercentage")]
-    public float MercenaryPercentage = 0.50f;
     /// <summary>
     /// Maximum number of mercenary slots
     /// </summary>

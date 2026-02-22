@@ -14,7 +14,7 @@
     sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
     state: impact_laser
   maxLength: 21
-  
+
 - type: hitscan
   id: LexieLaser
   damage:

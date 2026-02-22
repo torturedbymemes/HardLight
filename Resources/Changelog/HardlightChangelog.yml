@@ -1244,3 +1244,91 @@ Entries:
       message: You can now eat money
   id: 130
   time: '2026-02-19T05:03:00.0000000+00:00'
+- author: Notarin
+  changes:
+    - type: Add
+      message: Added brainwashing/hypnotism/mind-control via the neuralyzer
+  id: 131
+  time: '2026-02-19T05:02:04.0000000+00:00'
+- author: Generic-Eagle
+  changes:
+    - type: Add
+      message: Added the Bumble Bee to the Security shipyard
+  id: 132
+  time: '2026-02-19T05:02:28.0000000+00:00'
+- author: NotLivyathan
+  changes:
+    - type: Add
+      message: Moths and Mothroaches are now able to flap their wings.
+  id: 133
+  time: '2026-02-21T02:25:35.0000000+00:00'
+- author: Sully669
+  changes:
+    - type: Add
+      message: more pillows!
+  id: 134
+  time: '2026-02-21T02:33:51.0000000+00:00'
+- author: Notarin
+  changes:
+    - type: Tweak
+      message: Neuralyzer no longer works on mindshielded people.
+  id: 135
+  time: '2026-02-21T02:43:28.0000000+00:00'
+- author: TrylobyteWasTaken
+  changes:
+    - type: Fix
+      message: Food-O-Mat works now.
+  id: 136
+  time: '2026-02-21T02:44:20.0000000+00:00'
+- author: NotLivyathan
+  changes:
+    - type: Fix
+      message: >-
+        Crew Monitors/Manifests should now correctly display active
+        crew/Freelancers who persist through round changes.
+    - type: Fix
+      message: >-
+        Dynamic slot allocation for the Freelancer job should now actually work
+        dynamically.
+    - type: Fix
+      message: >-
+        Job data is now correctly displayed and should no longer give Unknowns
+        outside of the Crew Monitor.
+  id: 137
+  time: '2026-02-21T02:45:19.0000000+00:00'
+- author: NotLivyathan
+  changes:
+    - type: Add
+      message: Synths now have unique insides.
+  id: 138
+  time: '2026-02-21T02:56:52.0000000+00:00'
+- author: NotLivyathan
+  changes:
+    - type: Fix
+      message: Harbor Masters now correctly spawn with a pre-installed mindshield.
+  id: 139
+  time: '2026-02-21T03:16:29.0000000+00:00'
+- author: TrylobyteWasTaken
+  changes:
+    - type: Add
+      message: Scurrets can now equip bags of holding.
+  id: 140
+  time: '2026-02-21T03:19:40.0000000+00:00'
+- author: NotLivyathan
+  changes:
+    - type: Add
+      message: >-
+        Alt+click now takes beakers from ChemMasters instead of initiating a
+        vault.
+    - type: Add
+      message: Alt+click now signs papers when executed while holding a pen.
+    - type: Fix
+      message: >-
+        Alt+click will no longer attempt to open the transfer UI when executed
+        on a beaker.
+    - type: Fix
+      message: >-
+        Consents will no longer be violated upon alt+click and will once again
+        execute normal actions before lewd ones.
+  id: 141
+  time: '2026-02-21T16:25:57.0000000+00:00'

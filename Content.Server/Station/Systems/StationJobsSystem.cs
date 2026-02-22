@@ -267,6 +267,45 @@ public sealed partial class StationJobsSystem : EntitySystem
         }
     }
 
+    /// <summary>
+    /// HardLight: Attempts to set the configured mid-round maximum slots for a job in <see cref="StationJobsComponent.SetupAvailableJobs"/>.
+    /// This controls logic that references setup max values (e.g. job reopening checks).
+    /// </summary>
+    /// <param name="station">Station to update.</param>
+    /// <param name="jobPrototypeId">Job prototype ID to update.</param>
+    /// <param name="amount">New configured mid-round maximum slots.</param>
+    /// <param name="createSlot">Whether to create setup entry when missing.</param>
+    /// <param name="stationJobs">Resolve pattern, station jobs component of the station.</param>
+    /// <returns>Whether the update succeeded.</returns>
+    /// <exception cref="ArgumentException">Thrown when the given station is not a station.</exception>
+    public bool TrySetJobMidRoundMax(EntityUid station,
+        string jobPrototypeId,
+        int amount,
+        bool createSlot = false,
+        StationJobsComponent? stationJobs = null)
+    {
+        if (!Resolve(station, ref stationJobs))
+            throw new ArgumentException("Tried to use a non-station entity as a station!", nameof(station));
+
+        if (amount < 0)
+            throw new ArgumentException("Tried to set a job to have a negative configured max slots!", nameof(amount));
+
+        if (stationJobs.SetupAvailableJobs.TryGetValue(jobPrototypeId, out var setupSlots))
+        {
+            if (setupSlots.Length < 2)
+                return false;
+
+            setupSlots[1] = amount;
+            return true;
+        }
+
+        if (!createSlot)
+            return false;
+
+        stationJobs.SetupAvailableJobs[jobPrototypeId] = new[] { amount, amount };
+        return true;
+    }
+
     /// <inheritdoc cref="MakeJobUnlimited(Robust.Shared.GameObjects.EntityUid,string,Content.Server.Station.Components.StationJobsComponent?)"/>
     /// <param name="station">Station to make a job unlimited on.</param>
     /// <param name="job">Job to make unlimited.</param>

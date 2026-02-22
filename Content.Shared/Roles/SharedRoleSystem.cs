@@ -379,7 +379,9 @@ public abstract class SharedRoleSystem : EntitySystem
 
             mind.Comp = mindComp;
         }
-            return false;
+// HardLight: Apparently single-handedly caused the unknown job bug.
+// I'm commenting it out instead of just deleting it for future historians.
+//            return false;
 
         foreach (var roleEnt in mind.Comp.MindRoles)
         {

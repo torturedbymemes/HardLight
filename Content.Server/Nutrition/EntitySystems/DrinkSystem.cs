@@ -347,8 +347,9 @@ public sealed class DrinkSystem : SharedDrinkSystem
             !_body.TryGetBodyOrganEntityComps<StomachComponent>((ev.User, body), out var stomachs))
             return;
 
-        // Make sure the solution exists
-        if (!_solutionContainer.TryGetSolution(entity.Owner, entity.Comp.Solution, out var solution))
+        // HardLight: Make sure the solution exists and has volume.
+        // If empty, do not add the drink alt-verb so other alternative actions can execute.
+        if (!_solutionContainer.TryGetSolution(entity.Owner, entity.Comp.Solution, out Entity<SolutionComponent>? _, out Solution? solution) || solution.Volume <= 0) // HardLight: Added Entity<SolutionComponent>? _, out Solution? & solution.Volume <= 0
             return;
 
         // no drinking from living drinks, have to kill them first.

@@ -8,6 +8,7 @@ using Content.Shared.Popups;
 using Content.Shared.Verbs;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
+using Content.Shared.Nutrition.Components; // HardLight
 
 namespace Content.Shared.Chemistry.EntitySystems;
 
@@ -18,6 +19,7 @@ namespace Content.Shared.Chemistry.EntitySystems;
 public sealed class SolutionTransferSystem : EntitySystem
 {
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private readonly INetManager _net = default!; // HardLight
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solution = default!;
     [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
@@ -56,6 +58,13 @@ public sealed class SolutionTransferSystem : EntitySystem
         if (!args.CanAccess || !args.CanInteract || !comp.CanChangeTransferAmount || args.Hands == null)
             return;
 
+        // HardLight: Make sure the solution exists and has volume.
+        if (TryComp<DrinkComponent>(uid, out var drink) &&
+            (!_solution.TryGetSolution(uid, drink.Solution, out _, out var drinkSolution) || drinkSolution.Volume <= 0))
+        {
+            return;
+        }
+
         // Custom transfer verb
         var @event = args;
 
@@ -66,6 +75,11 @@ public sealed class SolutionTransferSystem : EntitySystem
             // TODO: remove server check when bui prediction is a thing
             Act = () =>
             {
+                // HardLight: This is a temporary check to prevent clients from opening the UI, which they can't use anyway.
+                // Once bui prediction is a thing this should be removed so clients can open the UI and set the transfer amount without delay.
+                if (!_net.IsServer)
+                    return;
+
                 _ui.OpenUi(uid, TransferAmountUiKey.Key, @event.User);
             },
             Priority = 1
