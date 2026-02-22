@@ -1199,11 +1199,11 @@
       path: /Audio/Announcements/attention.ogg
     warningAnnouncement: station-event-bluespace-cache-warning-announcement
     endAnnouncement: station-event-bluespace-cache-end-announcement
-    earliestStart: 100
+    earliestStart: 40
     weight: 5
     duration: 1350
     maxDuration: 1560
-    reoccurrenceDelay: 520 # 2 hours
+    reoccurrenceDelay: 350 # 2 hours
 #    requiredJobs:
 #      Sheriff: 1
   - type: BluespaceErrorRule
@@ -1211,7 +1211,7 @@
       grid: !type:GridSpawnGroup
         nameLoc:
         - station-event-bluespace-name-SyndicateWeaponsCache
-        minimumDistance: 5000
+        minimumDistance: 4500
         maximumDistance: 7500
         addComponents:
         - type: Gravity
@@ -1246,7 +1246,7 @@
     weight: 5
     duration: 1020
     maxDuration: 1350
-    reoccurrenceDelay: 520 # 2 hours
+    reoccurrenceDelay: 450 # 2 hours
 #    requiredJobs:
 #      Sheriff: 1
   - type: BluespaceErrorRule
@@ -1522,7 +1522,7 @@
     endRadioAnnouncementChannel: Supply
     weight: 5
     duration: 1800 # 30 minutes
-    maxDuration: 1800 # 30 minutes
+    maxDuration: 1900 # 30 minutes
     reoccurrenceDelay: 60 # 1 hour (some variety - at worst, alternates between four dungeon types)
   - type: ActiveRadio
     channels:
@@ -1537,7 +1537,7 @@
     groups:
       vgroid: !type:DungeonSpawnGroup
         nameDataset: NamesBorer
-        minimumDistance: 5000
+        minimumDistance: 3000
         maximumDistance: 7500
         addComponents: &dungeonComponents
         - type: Gravity
@@ -1567,7 +1567,7 @@
     groups:
       vgroid: !type:DungeonSpawnGroup
         nameDataset: NamesBorer
-        minimumDistance: 5000
+        minimumDistance: 3000
         maximumDistance: 7500
         addComponents: *dungeonComponents
         protos:
@@ -1582,7 +1582,7 @@
     groups:
       vgroid: !type:DungeonSpawnGroup
         nameDataset: NamesBorer
-        minimumDistance: 5000
+        minimumDistance: 3000
         maximumDistance: 7500
         addComponents: *dungeonComponents
         protos:
@@ -1597,7 +1597,7 @@
     groups:
       vgroid: !type:DungeonSpawnGroup
         nameDataset: NamesBorer
-        minimumDistance: 5000
+        minimumDistance: 3000
         maximumDistance: 7500
         addComponents: *dungeonComponents
         protos:
@@ -1612,7 +1612,7 @@
     groups:
       vgroid: !type:DungeonSpawnGroup
         nameDataset: NamesBorer
-        minimumDistance: 5000
+        minimumDistance: 3000
         maximumDistance: 7500
         addComponents: *dungeonComponents
         protos:

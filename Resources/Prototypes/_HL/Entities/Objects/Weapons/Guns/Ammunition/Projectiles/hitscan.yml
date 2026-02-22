@@ -2,11 +2,11 @@
   id: RailgunLaser
   damage:
     types:
-        Piercing: 30
-        Heat: 10
+        Piercing: 50
+        Heat: 15
         Shock: 10
-        Structural: 50
-        Stamina: 40
+        Structural: 100
+        Stamina: 30
   muzzleFlash:
     sprite: _HL/Objects/Weapons/Guns/Projectiles/railgun.rsi
     state: muzzle_railgun

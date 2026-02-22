@@ -29,10 +29,10 @@
       # prob: 0.1
       # orGroup: debris
     - id: NFAsteroidDebrisHuge
-      prob: 0.1
+      prob: 0.2
       orGroup: debris
     - id: NFAsteroidScrapDebrisHuge
-      prob: 0.1
+      prob: 0.4
       orGroup: debris
     - id: NFAsteroidDebrisExtraHuge
       prob: 0.1
@@ -72,19 +72,19 @@
       prob: 0.3
       orGroup: debris
     - id: NFAsteroidBasaltDebrisExtraEnormous
-      prob: 0.3
+      prob: 0.4
       orGroup: debris
     - id: NFAsteroidSandDebrisExtraEnormous
-      prob: 0.3
+      prob: 0.4
       orGroup: debris
     - id: NFAsteroidChromiteDebrisExtraEnormous
-      prob: 0.3
+      prob: 0.4
       orGroup: debris
     - id: NFAsteroidRockDebrisExtraEnormous
-      prob: 0.3
+      prob: 0.4
       orGroup: debris
     - id: NFAsteroidScrapDebrisExtraEnormous
-      prob: 0.15
+      prob: 0.25
       orGroup: debris
     # Massive
     - id: NFAsteroidDebrisMassive
@@ -123,7 +123,7 @@
       prob: 0.1
       orGroup: wreck
     - id: NFWreckDebrisEnormous
-      prob: 0.1
+      prob: 0.15
       orGroup: wreck
 
 # region Outer Ring
@@ -149,33 +149,33 @@
       # prob: 0.24
       # orGroup: debris
     - id: NFAsteroidDebrisExtraGigantic
-      prob: 0.04
+      prob: 0.09
       orGroup: debris
     - id: NFAsteroidIceDebrisExtraGigantic
       prob: 0.06
       orGroup: debris
     # Huge (.36)
     - id: NFAsteroidAndesiteDebrisExtraGigantic
-      prob: 0.06
+      prob: 0.16
       orGroup: debris
     - id: NFAsteroidBasaltDebrisExtraGigantic
-      prob: 0.06
+      prob: 0.16
       orGroup: debris
     - id: NFAsteroidScrapDebrisExtraGigantic
-      prob: 0.06
+      prob: 0.16
       orGroup: debris
     - id: NFAsteroidRockDebrisExtraGigantic
-      prob: 0.06
+      prob: 0.16
       orGroup: debris
     - id: NFAsteroidChromiteDebrisExtraGigantic
-      prob: 0.06
+      prob: 0.16
       orGroup: debris
     - id: NFAsteroidSandDebrisExtraGigantic
-      prob: 0.046
+      prob: 0.067
       orGroup: debris
     # Extra Enormous
     - id: NFAsteroidIceDebrisExtraEnormous
-      prob: 0.3
+      prob: 0.6
       orGroup: debris
     # Massive
     - id: NFAsteroidIceDebrisMassive
@@ -189,7 +189,7 @@
       prob: 0.005
       orGroup: wreck
     - id: XenoborgDroneLbyte
-      prob: 0.05
+      prob: 0.08
       orGroup: wreck
     - id: XenoborgDroneLgbyte
       prob: 0.02
