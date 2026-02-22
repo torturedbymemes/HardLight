@@ -639,11 +639,11 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: HitscanBatteryAmmoProvider
-    proto: RedMediumLaser # Frontier
+    proto: LexieLaser # Frontier
     fireCost: 100
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 40
+    autoRechargeRate: 35
   - type: MagazineVisuals
     magState: mag
     steps: 5
@@ -655,7 +655,7 @@
     - Sidearm
     - WeaponAntiqueLaser
   - type: StaticPrice
-    price: 750
+    price: 1750
   - type: StealTarget
     stealGroup: WeaponAntiqueLaser
   - type: SentienceTarget # I hope this is only the captain's gun
