@@ -16,6 +16,12 @@ using Robust.Shared.Console;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+// HardLight start
+using Content.Shared.Mind.Components;
+using Content.Shared.Roles.Jobs;
+using Robust.Server.Player;
+using Robust.Shared.Enums;
+// HardLight end
 
 namespace Content.Server.CrewManifest;
 
@@ -26,6 +32,8 @@ public sealed class CrewManifestSystem : EntitySystem
     [Dependency] private readonly EuiManager _euiManager = default!;
     [Dependency] private readonly IConfigurationManager _configManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly IPlayerManager _playerManager = default!; // HardLight
+    [Dependency] private readonly SharedJobSystem _jobs = default!; // HardLight
 
     /// <summary>
     ///     Cached crew manifest entries. The alternative is to outright
@@ -115,6 +123,7 @@ public sealed class CrewManifestSystem : EntitySystem
     /// <returns>The name and crew manifest entries (unordered) of the station.</returns>
     public (string name, CrewManifestEntries? entries) GetCrewManifest(EntityUid station)
     {
+        BuildCrewManifest(station); // HardLight
         var valid = _cachedEntries.TryGetValue(station, out var manifest);
         return (valid ? MetaData(station).EntityName : string.Empty, valid ? manifest : null);
     }
@@ -227,6 +236,7 @@ public sealed class CrewManifestSystem : EntitySystem
         var entries = new CrewManifestEntries();
 
         var entriesSort = new List<(JobPrototype? job, CrewManifestEntry entry)>();
+        var dedupe = new HashSet<(string Name, string JobTitle, string JobPrototype)>(); // HardLight
         foreach (var recordObject in iter)
         {
             var record = recordObject.Item2;
@@ -234,7 +244,42 @@ public sealed class CrewManifestSystem : EntitySystem
 
             _prototypeManager.TryIndex(record.JobPrototype, out JobPrototype? job);
             entriesSort.Add((job, entry));
+            dedupe.Add((entry.Name, entry.JobTitle, entry.JobPrototype)); // HardLight
         }
+
+        // HardLight start: Supplement station records with live in-game crew entries.
+        // This keeps the manifest complete across station transitions while dedupe avoids duplicate rows.
+        foreach (var session in _playerManager.NetworkedSessions)
+        {
+            if (session.Status != SessionStatus.InGame || session.AttachedEntity is not { } attached)
+                continue;
+
+            if (_stationSystem.GetOwningStation(attached) != station)
+                continue;
+
+            var name = MetaData(attached).EntityName;
+
+            JobPrototype? jobPrototype = null;
+            var jobTitle = Loc.GetString("generic-unknown-title");
+            var jobIcon = string.Empty;
+            var jobId = string.Empty;
+
+            if (TryComp<MindContainerComponent>(attached, out var mindContainer)
+                && _jobs.MindTryGetJob(mindContainer.Mind, out var proto))
+            {
+                jobPrototype = proto;
+                jobTitle = proto.LocalizedName;
+                jobIcon = proto.Icon;
+                jobId = proto.ID;
+            }
+
+            if (!dedupe.Add((name, jobTitle, jobId)))
+                continue;
+
+            var liveEntry = new CrewManifestEntry(name, jobTitle, jobIcon, jobId);
+            entriesSort.Add((jobPrototype, liveEntry));
+        }
+        // HardLight end
 
         entriesSort.Sort((a, b) =>
         {

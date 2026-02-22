@@ -157,7 +157,7 @@ public sealed class AdminSystem : EntitySystem
 
     private void OnRoleEvent(RoleEvent ev)
     {
-        if (!ev.RoleTypeUpdate || !_playerManager.TryGetSessionById(ev.Mind.UserId, out var session))
+        if (!_playerManager.TryGetSessionById(ev.Mind.UserId, out var session))
             return;
 
         UpdatePlayerList(session);

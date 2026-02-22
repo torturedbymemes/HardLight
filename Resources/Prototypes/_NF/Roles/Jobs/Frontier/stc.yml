@@ -52,6 +52,8 @@
     - Medical
     - Frontier
   special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
   - !type:GiveItemOnHolidaySpecial
     holiday: FrontierBirthday
     prototype: FrontierBirthdayGift

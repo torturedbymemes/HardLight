@@ -1,12 +1,13 @@
 using System;
-using System.Linq;
+using Content.Server._NF.Roles.Systems;
 using Content.Server.GameTicking;
-using Content.Server.Roles.Jobs;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Server.StationEvents.Components;
+using Content.Shared._NF.Roles.Components;
 using Content.Shared.GameTicking;
 using Content.Shared.GameTicking.Components;
+using Content.Shared.Mind.Components;
 using JetBrains.Annotations;
 using Robust.Server.Player;
 using Robust.Shared.Enums;
@@ -19,13 +20,18 @@ public sealed class DynamicJobAllocationRule : StationEventSystem<DynamicJobAllo
 {
     [Dependency] private readonly StationJobsSystem _stationJobs = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly JobSystem _jobs = default!;
+
+    private bool _recalculationQueued;
 
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnPlayerSpawnComplete);
+        SubscribeLocalEvent<PlayerJoinedLobbyEvent>(OnPlayerJoinedLobby);
+        SubscribeLocalEvent<JobTrackingStateChangedEvent>(OnJobTrackingStateChanged);
+        SubscribeLocalEvent<MindAddedMessage>(OnMindAddedGlobal, after: new[] { typeof(JobTrackingSystem) });
+        SubscribeLocalEvent<MindRemovedMessage>(OnMindRemovedGlobal, after: new[] { typeof(JobTrackingSystem) });
         _playerManager.PlayerStatusChanged += OnPlayerStatusChanged;
     }
 
@@ -38,7 +44,18 @@ public sealed class DynamicJobAllocationRule : StationEventSystem<DynamicJobAllo
     protected override void Started(EntityUid uid, DynamicJobAllocationRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {
         base.Started(uid, component, gameRule, args);
-        AdjustJobSlots(uid, component);
+        QueueRecalculation();
+    }
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        if (!_recalculationQueued)
+            return;
+
+        _recalculationQueued = false;
+        UpdateActiveRules();
     }
 
     protected override void ActiveTick(EntityUid uid, DynamicJobAllocationRuleComponent component, GameRuleComponent gameRule, float frameTime)
@@ -56,13 +73,37 @@ public sealed class DynamicJobAllocationRule : StationEventSystem<DynamicJobAllo
 
     private void OnPlayerSpawnComplete(PlayerSpawnCompleteEvent ev)
     {
-        UpdateActiveRules();
+        QueueRecalculation();
+    }
+
+    private void OnJobTrackingStateChanged(JobTrackingStateChangedEvent ev)
+    {
+        QueueRecalculation();
+    }
+
+    private void OnPlayerJoinedLobby(PlayerJoinedLobbyEvent ev)
+    {
+        QueueRecalculation();
+    }
+
+    private void OnMindAddedGlobal(MindAddedMessage ev)
+    {
+        QueueRecalculation();
+    }
+
+    private void OnMindRemovedGlobal(MindRemovedMessage ev)
+    {
+        QueueRecalculation();
     }
 
     private void OnPlayerStatusChanged(object? sender, SessionStatusEventArgs e)
     {
-        if (e.NewStatus == SessionStatus.Disconnected || e.NewStatus == SessionStatus.InGame)
-            UpdateActiveRules();
+        QueueRecalculation();
+    }
+
+    private void QueueRecalculation()
+    {
+        _recalculationQueued = true;
     }
 
     private void UpdateActiveRules()
@@ -76,48 +117,53 @@ public sealed class DynamicJobAllocationRule : StationEventSystem<DynamicJobAllo
 
     private void AdjustJobSlots(EntityUid uid, DynamicJobAllocationRuleComponent component)
     {
-        if (!TryGetRandomStation(out var chosenStation, HasComp<StationJobsComponent>))
+        var stations = new Dictionary<EntityUid, (int staffedNonMercenary, int filledMercenary)>();
+        var staffedEntities = new HashSet<EntityUid>();
+
+        var stationQuery = EntityQueryEnumerator<StationJobsComponent>();
+        while (stationQuery.MoveNext(out var stationUid, out _))
+        {
+            stations[stationUid] = (0, 0);
+        }
+
+        if (stations.Count == 0)
             return;
 
-        // Count players who are actually in the game (not in lobby)
-        var playerCount = _playerManager.NetworkedSessions.Count(x => x.AttachedEntity != null);
-
-        // Count how many players currently have this job
-        var currentFilled = 0;
         foreach (var session in _playerManager.Sessions)
         {
-            if (session.AttachedEntity != null)
-            {
-                if (_jobs.MindTryGetJob(session.AttachedEntity.Value, out var jobPrototype) && 
-                    jobPrototype.ID == component.MercenaryJob)
-                {
-                    currentFilled++;
-                }
-            }
+            if (session.AttachedEntity is not { } attached)
+                continue;
+
+            if (session.Status != SessionStatus.InGame)
+                continue;
+
+            staffedEntities.Add(attached);
         }
 
-        // Calculate desired total slots
-        int desiredTotalSlots;
-
-        // At 0-9 players, set all jobs to 0
-        if (playerCount < 10)
+        var jobsQuery = EntityQueryEnumerator<JobTrackingComponent>();
+        while (jobsQuery.MoveNext(out var jobTrackedEntity, out var jobTracking))
         {
-            desiredTotalSlots = 0;
+            if (!staffedEntities.Contains(jobTrackedEntity)
+                || jobTracking.Job is not { } job
+                || !stations.TryGetValue(jobTracking.SpawnStation, out var counts))
+                continue;
+
+            if (job == component.MercenaryJob)
+                counts.filledMercenary++;
+            else
+                counts.staffedNonMercenary++;
+
+            stations[jobTracking.SpawnStation] = counts;
         }
-        else
+
+        foreach (var (stationUid, counts) in stations)
         {
-            // Calculate slots based on percentages (rounded up)
-            desiredTotalSlots = (int)Math.Ceiling(playerCount * component.MercenaryPercentage);
+            var desiredTotalSlots = Math.Min(counts.staffedNonMercenary, component.MercenaryCap);
+            var availableSlots = Math.Max(0, desiredTotalSlots - counts.filledMercenary);
 
-            // Apply caps
-            desiredTotalSlots = Math.Min(desiredTotalSlots, component.MercenaryCap);
+            _stationJobs.TrySetJobMidRoundMax(stationUid, component.MercenaryJob, desiredTotalSlots);
+
+            _stationJobs.TrySetJobSlot(stationUid, component.MercenaryJob, availableSlots);
         }
-
-        // Calculate available slots (total we want minus those already filled)
-        // Can't be negative
-        var availableSlots = Math.Max(0, desiredTotalSlots - currentFilled);
-
-        // Set the job slots to available amount
-        _stationJobs.TrySetJobSlot(chosenStation.Value, component.MercenaryJob, availableSlots);
     }
 }

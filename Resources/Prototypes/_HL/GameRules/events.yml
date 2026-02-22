@@ -296,7 +296,7 @@
       pickPlayer: false
       mindRoles:
       - MindRoleDragon
-      
+
 - type: entity
   parent: BaseGameRule
   id: MagicDragonSpawn
@@ -329,7 +329,7 @@
       pickPlayer: false
       mindRoles:
       - MindRoleDragon
-      
+
 - type: entity
   parent: BaseGameRule
   id: HoloDragonSpawn
@@ -2013,16 +2013,15 @@
       prob: 0.05
 
 # Dynamic Job Allocation Rule
-# Adjusts Mercenary job slot based on player count
+# Adjusts Mercenary slots based on active staffed crew
 # Runs at round start and every 10 minutes
 - type: entity
   id: DynamicJobAllocation
   parent: BaseGameRule
   components:
-  - type: GameRule # Changed to game rule so its treated as a persistent game rule instead of event
+  - type: GameRule # Persistent game rule
     minPlayers: 0
   - type: DynamicJobAllocationRule
     checkInterval: 600  # Check every 10 minutes (600 seconds)
-    mercenaryJob: Mercenary  # Job ID, since we're just using 1 now
-    mercenaryPercentage: 0.5  # 20% --- Did you want me to set it to 20%? Right now its running at 50% of players
-    mercenaryCap: 40  # Maximum slots
+    mercenaryJob: Mercenary
+    mercenaryCap: 50  # Maximum slots

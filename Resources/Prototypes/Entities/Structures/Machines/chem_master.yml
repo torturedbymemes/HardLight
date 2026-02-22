@@ -81,6 +81,7 @@
   - type: ItemSlots
     slots:
       beakerSlot:
+        priority: 9 # HardLight
         whitelist:
           components:
           - FitsInDispenser

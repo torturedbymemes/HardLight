@@ -135,7 +135,7 @@ public sealed class LewdTraitSystem : EntitySystem
             {
                 Act = () => AttemptCum((args.User, cumProducer), user, target),
                 Text = Loc.GetString("cum-verb-inside-text"),
-                Priority = 2
+                Priority = -50 // HardLight: 2<-50; Should never happen as an alt+click verb unless absolutely no other alt-click verbs are available.
             };
             args.Verbs.Add(verbCumInside);
         }
@@ -149,7 +149,7 @@ public sealed class LewdTraitSystem : EntitySystem
             {
                 Act = () => AttemptPiss((args.User, pissProducer), user, target),
                 Text = Loc.GetString("piss-verb-inside-text"),
-                Priority = 2
+                Priority = -50 // HardLight: 2<-50; Should never happen as an alt+click verb unless absolutely no other alt-click verbs are available.
             };
             args.Verbs.Add(verbPissInside);
         }
@@ -173,7 +173,7 @@ public sealed class LewdTraitSystem : EntitySystem
             {
                 Act = () => AttemptCum((args.User, cumProducer), user, target),
                 Text = Loc.GetString("cum-verb-inside-text"),
-                Priority = 2
+                Priority = -50 // HardLight: 2<-50; Should never happen as an alt+click verb unless absolutely no other alt-click verbs are available.
             };
             args.Verbs.Add(verbCumInside);
         }
@@ -187,7 +187,7 @@ public sealed class LewdTraitSystem : EntitySystem
             {
                 Act = () => AttemptPiss((args.User, pissProducer), user, target),
                 Text = Loc.GetString("piss-verb-inside-text"),
-                Priority = 2
+                Priority = -50 // HardLight: 2<-50; Should never happen as an alt+click verb unless absolutely no other alt-click verbs are available.
             };
             args.Verbs.Add(verbPissInside);
         }

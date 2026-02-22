@@ -396,7 +396,8 @@ public sealed class PaperSystem : EntitySystem
             {
                 TrySign((uid, component), args.User, args.Using.Value);
             },
-            Text = Loc.GetString("paper-component-verb-sign")
+            Text = Loc.GetString("paper-component-verb-sign"),
+            Priority = 4 // Starlight
             // Icon = Don't have an icon yet. Todo for later.
         };
         args.Verbs.Add(verb);

@@ -25,10 +25,12 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Content.Shared.DeviceNetwork.Components;
-using Content.Server.Salvage.Expeditions; // Frontier
-using Content.Server._NF.Medical.SuitSensors; // Frontier
 using Content.Shared.Emp;
-using Content.Shared.FloofStation; // Frontier
+// Frontier start
+using Content.Server.Salvage.Expeditions;
+using Content.Server._NF.Medical.SuitSensors;
+using Content.Shared.FloofStation;
+// Frontier end
 
 namespace Content.Server.Medical.SuitSensors;
 
@@ -100,17 +102,16 @@ public sealed class SuitSensorSystem : EntitySystem
             if (status == null)
                 continue;
 
-            //Retrieve active server address if the sensor isn't connected to a server
-            if (sensor.ConnectedServer == null)
+            // HardLight: Always bind to the active server for the sensor's current map.
+            // This keeps crew monitor data correct when players transfer between stations/maps.
+            if (!_singletonServerSystem.TryGetActiveServerAddress<CrewMonitoringServerComponent>(xform.MapID, out var address))
             {
-                // Frontier - PR 1053 QoL changes to coordinates display
-                // if (!_singletonServerSystem.TryGetActiveServerAddress<CrewMonitoringServerComponent>(sensor.StationId!.Value, out var address))
-                if (!_singletonServerSystem.TryGetActiveServerAddress<CrewMonitoringServerComponent>(xform.MapID, out var address))
-                    continue;
-
-
-                sensor.ConnectedServer = address;
+                sensor.ConnectedServer = null;
+                continue;
             }
+
+            if (sensor.ConnectedServer != address) // HardLight
+                sensor.ConnectedServer = address;
 
             // Send it to the connected server
             var payload = SuitSensorToPacket(status);
