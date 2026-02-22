@@ -1444,7 +1444,7 @@
       path: /Audio/Misc/notice1.ogg
     warningAnnouncement: station-event-bluespace-generic-ftl-warning-announcement
     endAnnouncement: station-event-bluespace-generic-ftl-end-announcement
-    earliestStart: 20
+    earliestStart: 10
     weight: 1
     duration: 1800
     maxDuration: 2400
@@ -1482,7 +1482,7 @@
     warningAnnouncement: station-event-bluespace-generic-ftl-warning-announcement
     endAnnouncement: station-event-bluespace-generic-ftl-end-announcement
     earliestStart: 20
-    maximumPlayers: 5
+    maximumPlayers: 1
     weight: 5
     duration: 900
     maxDuration: 1800
@@ -1691,7 +1691,7 @@
       path: /Audio/Announcements/attention.ogg
     earliestStart: 30
     reoccurrenceDelay: 200
-    minimumPlayers: 5
+    minimumPlayers: 3
     weight: 6 # Really weak compared to other critters
     duration: 60
     requiredJobs:

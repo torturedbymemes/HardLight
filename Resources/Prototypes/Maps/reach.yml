@@ -21,7 +21,7 @@
         - type: StationJobs
           availableJobs: # 15 jobs total w/o latejoins, 19 jobs total w/ latejoins
             #command (2)
-            
+
             HeadOfSecurity: [ 1, 1 ]
             StationCaptain: [ 1, 1 ]
             ChiefMedicalOfficer: [ 1, 1 ]
@@ -51,7 +51,7 @@
             #Passenger: [ -1, -1 ] #infinite, not counted
             #Contractor: [ -1, -1 ]
             #Pilot: [ 5, 5 ]
-            Mercenary: [ 0, 40 ]
+            Mercenary: [ 40, 40 ]
             MedicalQuadBorg: [ 3, 3 ]
             ServiceQuadBorg: [ 3, 3 ]
             SalvageQuadBorg: [ 3, 3 ]
@@ -61,4 +61,4 @@
             MailCarrier: [ 1, 1 ]
             Prisoner: [ 3, 3 ]
             ForensicMantis: [ 1, 1 ]
-            
+

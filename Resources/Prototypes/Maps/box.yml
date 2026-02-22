@@ -66,7 +66,7 @@
             Borg: [ 2, 3 ]
             #Contractor: [ -1, -1 ]
             #Pilot: [ 5, 5 ]
-            Mercenary: [ 0, 40 ]
+            Mercenary: [ 40, 40 ]
             MedicalQuadBorg: [ 3, 3 ]
             ServiceQuadBorg: [ 3, 3 ]
             SalvageQuadBorg: [ 3, 3 ]
