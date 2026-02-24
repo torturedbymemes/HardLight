@@ -11,8 +11,8 @@
   - type: Item
     size: Small
   - type: Battery
-    maxCharge: 5000 # DV did this I'm doing too monke see monke do
-    startingCharge: 5000
+    maxCharge: 3500 # DV did this I'm doing too monke see monke do
+    startingCharge: 3500
   - type: Sprite
     sprite: _HL/Objects/Weapons/Guns/Ammunition/Magazine/Railgun/railgun_mag.rsi
     layers:
@@ -29,5 +29,5 @@
     graph: MagazineRailgunImprovisedCraftingGraph
     node: mag
   - type: Battery
-    maxCharge: 2500 # way more than a highcap but we'll cross that bridge
-    startingCharge: 2500
+    maxCharge: 1500 # way more than a highcap but we'll cross that bridge
+    startingCharge: 1500
