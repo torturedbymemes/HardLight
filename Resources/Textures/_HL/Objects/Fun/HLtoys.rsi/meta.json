@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "in-hand lizard plushie sprites by KieueCaprie, modified by Dakota",
+    "copyright": "in-hand lizard plushie sprites by KieueCaprie, modified by Dakota, firelizardplush by GitHub ItsDzordz / Discord dzordz (310775535984836609)",
     "size": {
         "x": 32,
         "y": 32
@@ -62,6 +62,9 @@
         },
 		{
             "name": "bountyhunterplush"
+        },
+		{
+            "name": "firelizardplush"
         },
 		{
             "name": "abysszard-inhand-left",

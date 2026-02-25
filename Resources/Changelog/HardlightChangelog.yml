@@ -1332,3 +1332,73 @@ Entries:
         execute normal actions before lewd ones.
   id: 141
   time: '2026-02-21T16:25:57.0000000+00:00'
+- author: TrylobyteWasTaken
+  changes:
+    - type: Add
+      message: NanoChat!
+  id: 142
+  time: '2026-02-24T02:45:15.0000000+00:00'
+- author: NotLivyathan
+  changes:
+    - type: Add
+      message: >-
+        Secure closets and previously lockable lockers/crates can now be locked
+        to an ID for extra security.
+    - type: Tweak
+      message: >-
+        Popups from world actions should no longer overlay on top of one another
+        and ruin readability.
+    - type: Fix
+      message: >-
+        Entities with PryingComponent that aren't exclusively for prying will no
+        longer attempt to pry outside of alt+click.
+  id: 143
+  time: '2026-02-24T02:51:32.0000000+00:00'
+- author: Suraru
+  changes:
+    - type: Add
+      message: Added Felionoids
+  id: 144
+  time: '2026-02-24T03:14:11.0000000+00:00'
+- author: Suraru
+  changes:
+    - type: Add
+      message: >-
+        More aggressive cleanup that will delete gridless entities not near a
+        player. Space trash begon!
+    - type: Add
+      message: Ghosts now get get deleted after 2m if a player isn't connected to it
+    - type: Fix
+      message: Grids getting deleted also deleting players
+  id: 145
+  time: '2026-02-24T03:14:56.0000000+00:00'
+- author: TrylobyteWasTaken
+  changes:
+    - type: Fix
+      message: Pick-n-Pack machines now contain the correct ammunition types.
+  id: 146
+  time: '2026-02-24T20:48:41.0000000+00:00'
+- author: warcrazed11
+  changes:
+    - type: Add
+      message: Adds the explosive and cryostasis darts.
+  id: 147
+  time: '2026-02-24T20:52:33.0000000+00:00'
+- author: fenndragon
+  changes:
+    - type: Add
+      message: Added resomi changes per bounty request
+  id: 148
+  time: '2026-02-24T20:52:52.0000000+00:00'
+- author: fenndragon
+  changes:
+    - type: Fix
+      message: 'fixed the bounds for the apartment system '
+  id: 149
+  time: '2026-02-24T21:02:32.0000000+00:00'
+- author: NotLivyathan
+  changes:
+    - type: Add
+      message: Added a Livyathan plushie!
+  id: 150
+  time: '2026-02-24T21:37:39.0000000+00:00'

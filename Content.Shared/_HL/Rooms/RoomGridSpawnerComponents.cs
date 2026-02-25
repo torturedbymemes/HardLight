@@ -20,8 +20,8 @@ public sealed partial class RoomGridSpawnAreaComponent : Component
     public string AreaGroup = string.Empty;
 
     [DataField("width")]
-    public float Width = 5f;
+    public float Width = 7f;
 
     [DataField("height")]
-    public float Height = 5f;
+    public float Height = 7f;
 }

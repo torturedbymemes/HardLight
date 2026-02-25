@@ -917,3 +917,55 @@
     tags:
     - ClothMade
     - Payload
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieLivyathan
+  name: fire lizard plushie
+  description: Why is he so fucking hot?
+  components:
+  - type: Sprite
+    sprite: _HL/Objects/Fun/HLtoys.rsi
+    state: firelizardplush
+    scale: 0.8, 0.8
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Items/Toys/weh.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/Toys/weh.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Items/Toys/weh.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/Items/Toys/weh.ogg
+  - type: EmitSoundOnCollide
+    sound:
+      path: /Audio/Items/Toys/weh.ogg
+  - type: Food
+    requiresSpecialDigestion: true
+    useSound:
+      path: /Audio/Items/Toys/weh.ogg
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    soundHit:
+      path: /Audio/Items/Toys/weh.ogg
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 3
+      - ReagentId: AbyssalBlood
+        Quantity: 2
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Fiber
+          Quantity: 10
+        - ReagentId: Blood
+          Quantity: 3
+        - ReagentId: AbyssalBlood
+          Quantity: 2

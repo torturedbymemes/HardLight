@@ -124,6 +124,7 @@ public sealed class RoomGridSpawnerSystem : EntitySystem
         consoleEntity = ClearArea(pending.GridUid, gridComp, pending.Bounds, consoleEntity, pending.MarkerUid, DeleteContainedEntitiesOnReset);
 
         var shipData = _shipSerialization.DeserializeShipGridDataFromYaml(roomData, userId);
+        shipData = FilterShipGridDataToBounds(shipData, pending.Bounds);
         _shipSerialization.ReconstructShipOnExistingGrid(shipData, pending.GridUid, Vector2.Zero);
 
         if (TryComp<RoomGridSpawnerConsoleComponent>(consoleEntity, out var consoleComp))
@@ -204,9 +205,19 @@ public sealed class RoomGridSpawnerSystem : EntitySystem
 
     private static Box2 GetAreaBounds(RoomGridSpawnAreaComponent markerComp, TransformComponent markerXform)
     {
-        var half = new Vector2(markerComp.Width * 0.5f, markerComp.Height * 0.5f);
+        var widthTiles = Math.Max(1, (int)MathF.Round(markerComp.Width));
+        var heightTiles = Math.Max(1, (int)MathF.Round(markerComp.Height));
+
         var center = markerXform.LocalPosition;
-        return new Box2(center - half, center + half);
+        var centerX = (int)MathF.Round(center.X);
+        var centerY = (int)MathF.Round(center.Y);
+
+        var left = centerX - widthTiles / 2;
+        var bottom = centerY - heightTiles / 2;
+
+        return new Box2(
+            new Vector2(left, bottom),
+            new Vector2(left + widthTiles, bottom + heightTiles));
     }
 
     private EntityUid ClearArea(EntityUid gridUid, MapGridComponent grid, Box2 bounds, EntityUid consoleUid, EntityUid markerUid, bool includeContained)
@@ -382,7 +393,7 @@ public sealed class RoomGridSpawnerSystem : EntitySystem
         };
     }
 
-    private const int BlankRoomSize = 9;
+    private const int BlankRoomSize = 7;
     private const string BlankRoomTileId = "FloorSteel";
     private const string RoomConsolePrototype = "ComputerRoomGridSpawner";
     private const bool DeleteContainedEntitiesOnReset = false;

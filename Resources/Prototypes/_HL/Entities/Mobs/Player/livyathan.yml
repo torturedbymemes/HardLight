@@ -1,0 +1,122 @@
+- type: entity
+  parent: [ SimpleSpaceMobBase, FlyingMobBase ]
+  id: MobDragonLivyathan
+  categories: [ Mapping ]
+  suffix: ""
+  name: Livyathan
+  description: Why is he so fucking hot?
+  components:
+  - type: Bloodstream
+    bloodMaxVolume: 650
+  - type: BankAccount
+  - type: NpcFactionMember
+    factions:
+    - Dragon
+  - type: Speech
+    speechVerb: LargeMob
+  - type: CombatMode
+  - type: MobMover
+  - type: InputMover
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3
+    baseSprintSpeed: 5
+    baseWeightlessModifier: 1.5
+  - type: Sprite
+    sprite: _HL/Mobs/Characters/livyathan.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: livyathan
+    - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+      state: livyathan-unshaded
+      shader: unshaded
+    - map: [ "wings" ]
+      state: livyathan_wings
+  - type: SpriteStateToggle
+    spriteLayer: wings
+    stateOn: livyathan_wings
+    stateOff: livyathan_wings
+    enabled: true
+    toggleAction: ActionLivyathanToggleWings
+  - type: GenericVisualizer
+    visuals:
+      enum.SpriteStateToggleVisuals.Toggled:
+        wings:
+          True: { visible: true }
+          False: { visible: false }
+  - type: Physics
+    bodyType: KinematicController
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.40
+        density: 100
+        mask:
+        - FlyingMobMask
+        layer:
+        - FlyingMobLayer
+  - type: Body
+    prototype: Dragon
+  - type: SurgeryTarget
+  - type: MobState
+  - type: MobStateActions
+    actions:
+      Critical:
+      - ActionCritSuccumb
+      - ActionCritLastWords
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      1000: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      500: 0.7
+      750: 0.5
+  # disable taking damage from fire, since its a fire breathing dragon
+  - type: Flammable
+    damage:
+      types: {}
+  - type: StatusEffects # Overwriting basesimplemob to remove flash, getting flashed as dragon just feelsbad
+    allowed:
+    - SlowedDown
+    - Stutter
+    - Electrocution
+    - ForcedSleep
+    - TemporaryBlindness
+    - Pacified
+    - RadiationProtection
+    - Drowsiness
+    - Adrenaline
+  - type: Temperature
+    heatDamageThreshold: 800
+  - type: Metabolizer
+    solutionOnBody: false
+    updateInterval: 0.25
+    metabolizerTypes: [ Dragon ]
+    groups:
+    - id: Medicine
+    - id: Cryogenic # Frontier
+    - id: Poison
+  - type: MeleeWeapon
+    altDisarm: false
+    soundHit:
+      path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    damage:
+      types:
+        Piercing: 15
+        Slash: 15
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - DoorBumpOpener
+  - type: Puller
+    needsHands: false
+  - type: Prying
+    pryPowered: true
+    force: true
+    speedModifier: 3
+    useSound:
+      path: /Audio/Items/crowbar.ogg
+  - type: HLLivyathan
+    addDragonMorphAction: false

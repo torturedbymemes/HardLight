@@ -1,0 +1,39 @@
+- type: entity
+  id: ActionLivyathanDragonMorph
+  name: Dragon Morph
+  description: Shift into your dragon form.
+  components:
+  - type: InstantAction
+    useDelay: 2
+    icon:
+      sprite: Mobs/Species/Skeleton/parts.rsi
+      state: skull_icon
+    event: !type:LivyathanDragonMorphActionEvent
+
+- type: entity
+  id: ActionLivyathanDragonRevert
+  name: Revert Form
+  description: Shift back into your original form.
+  components:
+  - type: InstantAction
+    useDelay: 2
+    icon:
+      sprite: Mobs/Species/Skeleton/parts.rsi
+      state: skull_icon
+    event: !type:LivyathanDragonRevertActionEvent
+
+- type: entity
+  id: ActionLivyathanToggleWings
+  name: Toggle Wings
+  description: Toggle your wings in and out.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InstantAction
+    useDelay: 1
+    icon:
+      sprite: _HL/Mobs/Characters/livyathan.rsi
+      state: livyathan_wings
+    iconOn:
+      sprite: _HL/Mobs/Characters/livyathan.rsi
+      state: livyathan_wings
+    event: !type:SpriteStateToggleActionEvent
